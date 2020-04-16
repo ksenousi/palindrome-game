@@ -7,7 +7,7 @@ Simple Palindrome Game with a top score section
  npm install
  npm start
  ```
- 2. open this [link](localhost:3000) in the browser
+ 2. open this link `localhost:3000` in the browser
 
 ## Testing
 

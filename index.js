@@ -1,14 +1,31 @@
-var express = require('express');
+const express = require('express');
+const inMemoryDatabase = require('./inMemoryDatabase');
+const handleErrors = require('./utils/errorHandler');
+const consoleLogger = require('./consoleLogger');
 
-var app = express();
 
-app.use(express.static(__dirname));
+function createApp(database, logger) {
+  const app = express();
+  app.locals.config = { database, logger };
 
-app.get('/', function(req, res) {
-	res.render('index.html');
-});
+  app.use(express.json());
+  app.use(express.static(__dirname));
 
-var port = 3000;
-app.listen(port, function() {
-	console.log('Server', process.pid, 'listening on port', port);
-});
+  app.get('/', (req, res) => {
+    res.render('index.html');
+  });
+  app.use(handleErrors);
+
+  return app;
+}
+
+if (require.main === module) {
+  const app = createApp(inMemoryDatabase, consoleLogger);
+
+  const port = 3000;
+  app.listen(port, () => {
+    consoleLogger('Server', process.pid, 'listening on port', port);
+  });
+} else {
+  module.exports = createApp;
+}

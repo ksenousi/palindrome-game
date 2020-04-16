@@ -1,4 +1,4 @@
-const insertIntoSortedArray = require("../../utils/insertIntoSortedArray");
+const insertIntoSortedArray = require('../../utils/insertIntoSortedArray');
 
 const inputAndExpecationTable = [
   [
@@ -15,9 +15,9 @@ const inputAndExpecationTable = [
   ],
 ];
 
-describe("insertIntoSortedArray test", () => {
+describe('insertIntoSortedArray test', () => {
   it.each(inputAndExpecationTable)(
-    "should insert items in the correct locations",
+    'should insert items in the correct locations',
     (randomOrder, expectedOrder) => {
       const randomEntries = randomOrder.map((num) => ({
         points: num,
@@ -28,11 +28,11 @@ describe("insertIntoSortedArray test", () => {
       }));
 
       const testArray = [];
-      randomEntries.forEach((entry) =>
-        insertIntoSortedArray(testArray, entry, (a, b) => a.points - b.points)
+      randomEntries.forEach(
+        (entry) => insertIntoSortedArray(testArray, entry, (a, b) => a.points - b.points),
       );
 
       expect(testArray).toEqual(expectedEntries);
-    }
+    },
   );
 });

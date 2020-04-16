@@ -1,12 +1,17 @@
 {
   "dependencies": {
-    "express": "4.16.2"
+    "express": "4.16.2",
+    "express-validator": "^6.4.0",
+    "http-errors": "^1.7.3"
   },
   "devDependencies": {
     "jest": "^25.3.0",
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "jest tests --collectCoverage",
+    "test:integration": "jest tests/integration --collectCoverage",
+    "test:unit": "jest tests/unit --collectCoverage"
   }
 }

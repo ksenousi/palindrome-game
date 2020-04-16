@@ -2,6 +2,10 @@
   "dependencies": {
     "express": "4.16.2"
   },
+  "devDependencies": {
+    "jest": "^25.3.0",
+    "supertest": "^4.0.2"
+  },
   "scripts": {
     "start": "node index.js"
   }

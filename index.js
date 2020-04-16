@@ -1,4 +1,5 @@
 const express = require('express');
+const apiController = require('./routes/api/index');
 const inMemoryDatabase = require('./inMemoryDatabase');
 const handleErrors = require('./utils/errorHandler');
 const consoleLogger = require('./consoleLogger');
@@ -14,6 +15,7 @@ function createApp(database, logger) {
   app.get('/', (req, res) => {
     res.render('index.html');
   });
+  app.use('/api', apiController);
   app.use(handleErrors);
 
   return app;

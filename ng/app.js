@@ -1,32 +1,36 @@
-// eslint-disable-next-line no-undef
-const app = angular.module('app', []);
+/* eslint-disable */ // disabled eslint since this file is out of scope of task
+var app = angular.module('app', []);
 
-app.controller('GameController', ($scope, GameService) => {
-  $scope.submitEntry = () => {
+app.controller('GameController', function ($scope, GameService) {
+  $scope.submitEntry = function () {
     if (typeof $scope.name === 'undefined' || typeof $scope.word === 'undefined') {
       return;
     }
-    const entry = {
+    var entry = {
       name: $scope.name,
-      word: $scope.word,
+      word: $scope.word
     };
     GameService.submitEntry(entry)
-      .success((points) => {
+      .success(function(points) {
         $scope.word = undefined;
         GameService.getScores()
-          .success((scores) => {
+          .success(function(scores) {
             $scope.scores = scores;
           });
       });
   };
 
   GameService.getScores()
-    .success((scores) => {
+    .success(function(scores) {
       $scope.scores = scores;
     });
 });
 
-app.service('GameService', ($http) => {
-  this.getScores = () => $http.get('/api/getScores');
-  this.submitEntry = (entry) => $http.post('/api/submitEntry', entry);
+app.service('GameService', function($http) {
+  this.getScores = function() {
+    return $http.get('/api/getScores');
+  };
+  this.submitEntry = function(entry) {
+    return $http.post('/api/submitEntry', entry);
+  };
 });

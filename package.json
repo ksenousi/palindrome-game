@@ -14,7 +14,7 @@
   "scripts": {
     "start": "node index.js",
     "lint": "eslint .",
-    "test": "jest tests --collectCoverage",
+    "test": "jest tests/** --collectCoverage",
     "test:integration": "jest tests/integration --collectCoverage",
     "test:unit": "jest tests/unit --collectCoverage"
   }

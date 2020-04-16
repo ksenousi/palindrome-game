@@ -26,7 +26,7 @@ if (require.main === module) {
 
   const port = 3000;
   app.listen(port, () => {
-    consoleLogger('Server', process.pid, 'listening on port', port);
+    consoleLogger.log('Server', process.pid, 'listening on port', port);
   });
 } else {
   module.exports = createApp;
